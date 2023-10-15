@@ -9,7 +9,7 @@ struct HTTP_request{
     char* body;
 }http_request;
 
-void manage_request(char *buffer , unsigned int size , struct HTTP_request * req){
+void manage_request(char *buffer , unsigned int size ){
     buffer[size] = '\0';
     char** request = str_split( "\n" , buffer );                                // str_split allocates the memory!!
     char* first_line = request[0];                                              // separate first line of request from rest
