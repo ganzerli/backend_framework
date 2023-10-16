@@ -77,7 +77,7 @@ struct HTTP_request{
 
 // '/favicon.ico'
 void ctrl_favicon(){
-    response_send_pic("E-pachy_512x512.png");
+    response_send_pic("image.jpeg");
 }
 
     // '/'
@@ -98,5 +98,5 @@ void ctrl_home(){
 // // // // // // // // // // // // // // // // // // // // // POST CONTROLLERS
 // '/'
 void ctrl2(){
-        response_send_pic("E-pachy_512x512.png");
+        response_send_pic("image.jpeg");
 }
