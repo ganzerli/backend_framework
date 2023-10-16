@@ -16,10 +16,10 @@ void manage_request(char *buffer , unsigned int size ){
     char** headers = &request[1];                                               // keep only headers
     unsigned int headers_count = get_strgs_counter()-1;                         // remember count of the headers -> str_split sets counter
     char** first_line_ = str_split(" " , first_line);                           // split first line
-    req->method  = first_line_[0];
-    req->URI  = first_line_[1];
-    req->HTTP_version  =  first_line_[2] ;
-    req->headers_count  = headers_count ;
-    req->headers  = headers ;
-    req->body  =  headers[headers_count-1];
+    req.method  = first_line_[0];
+    req.URI  = first_line_[1];
+    req.HTTP_version  =  first_line_[2] ;
+    req.headers_count  = headers_count ;
+    req.headers  = headers ;
+    req.body  =  headers[headers_count-1];
 }
