@@ -73,22 +73,74 @@ struct HTTP_request{
 //#########################################################################
 
 
+//#########################################################################
+//          P R E L U D E     O F     E - P A C R E E P T                 #
+//#########################################################################
+
+void prelude_epacreept(){
+    // those will work on parallel
+    // is the list of the variables in the environment of E-pacreept.ec
+
+    const unsigned int size = 126;
+    char *vars[size];
+    char *values[size];
+    
+    char arrayend[] = "arrayend";
+    vars[0] = arrayend;
+    values[0] = arrayend;
+
+
+    void add_var(char* varname , char* value ){
+        unsigned int i = 0;
+        while( !str_cmp( str_len(vars[i]) , vars[i] , arrayend ) ){
+            printf("\npresent: %s = %s" ,vars[i] ,values[i] );
+            i++;
+        }
+        vars[i] = varname; 
+        values[i] = value;
+        vars[i+1] = arrayend;
+        values[i+1] = arrayend;
+        printf("\nadded var: %s , value: %s\n\n" , vars[i] , values[i] );
+    }
+    
+    add_var("user"  , "User_Name@http.com");
+
+    add_var("password"  , "************************");
+
+    add_var("tree_structure"  , "abc{abc2{abc2.0;abc2.1;abc2.3}abc3{abc3.O;abc3.1}}");
+
+    add_var("brunch_users"  , "name,password,profileid");
+
+}
+
+//#########################################################################
+//          P R E L U D E     O F     E - P A C R E E P T       (end)     #
+//#########################################################################
+
+
+
+
+
+
 
 
 // '/favicon.ico'
 void ctrl_favicon(){
-    response_send_pic("image.jpeg");
+    response_send_pic("E-pachy_512x512.png");
 }
 
     // '/'
 void ctrl_home(){
 
-    unsigned int indexes[512];
-    char* text = "hello <-abc-> hello2 ,<- ansdn <-sdlkjsd slkjslkja ,lks <-a dklslkjd->lkjsd b->"
+    // unsigned int indexes[512];
+    // char* text = "hello <-abc-> hello2 ,<- ansdn <-sdlkjsd slkjslkja ,lks <-a dklslkjd->lkjsd b->";
 
-    unsigned int counter = find_in_str( text , "<-" , "->" , indexes );
+    // unsigned int counter = find_in_str( text , "<-" , "->" , indexes );
 
-    for (u8 i = 0 ; i < counter; i++ ) printf("[%u]" , indexes[i] );
+    // for (u8 i = 0 ; i < counter; i++ ) printf("[%u]" , indexes[i] );
+
+    prelude_epacreept();
+
 
     add_response_header("Server: E-pache 1.0");
     response_send_file("views/html.html");
@@ -98,5 +150,5 @@ void ctrl_home(){
 // // // // // // // // // // // // // // // // // // // // // POST CONTROLLERS
 // '/'
 void ctrl2(){
-        response_send_pic("image.jpeg");
+        response_send_pic("E-pachy_512x512.png");
 }
