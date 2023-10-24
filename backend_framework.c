@@ -1,5 +1,3 @@
-#include "alphabet.c"
-
 // backend framework
 #include "request.c"
 #include "response.c"
@@ -25,18 +23,17 @@ void post(){
         route("/" , ctrl2 );
 }
 
-
+// NEEDED TO FREE REQUEST STRINGS
 unsigned int backend_framework(char* buffer , unsigned int size){
-
         unsigned int request_size = size;
-        manage_request(buffer , size);
+        manage_request(buffer , size );
         // use same buffer also for response
         response_config(buffer);
         router();
-
+        // free all the memory allocated for strings in request
+        str_free_all();
         return http_response.response_length;;
 }
-
 
 
 // ROUTER
