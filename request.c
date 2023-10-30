@@ -2,6 +2,7 @@
 struct HTTP_request{
     char* method;
     char* URI;
+    char* params;
     char* HTTP_version;
     unsigned int headers_count;
     char** headers;
@@ -16,10 +17,37 @@ void manage_request(char *buffer , unsigned int size ){
     char** headers = &request[1];                                               // keep only headers
     unsigned int headers_count = get_strgs_counter()-1;                         // remember count of the headers -> str_split sets counter
     char** first_line_ = str_split(" " , first_line);                           // split first line
-    req.method  = first_line_[0];
-    req.URI  = first_line_[1];
-    req.HTTP_version  =  first_line_[2] ;
-    req.headers_count  = headers_count ;
-    req.headers  = headers ;
-    req.body  =  headers[headers_count-1];
+    http_request.method  = first_line_[0];
+    // get parameters
+    char* uri_params = first_line_[1];
+   // char line_size = str_len(uri_params);
+
+    printf("\nURI URI URI URI URI URI URI URI URI URI URI URI\n");
+    printf("URI and Params: %s , length: %u" , uri_params , str_len(uri_params));
+    char c;
+    char *uri = uri_params;
+    char *params = uri_params;
+
+    for (u8 i = 0; i < str_len(uri_params); i++){
+        c = uri_params[i];
+        if (c == '?'){
+            uri_params[i] = '\0';                                               // end uri at '?'
+            uri = uri_params;               
+            params = &uri_params[i+1];                                          // begin of parameters
+        } 
+    }
+
+    if(params == uri_params) params = &uri_params[str_len(uri_params)];         // params is '\0'
+
+    http_request.URI  = uri;
+    http_request.params = params;
+    http_request.HTTP_version  =  first_line_[2] ;
+    http_request.headers_count  = headers_count ;
+    http_request.headers  = headers ;
+    http_request.body  =  headers[headers_count-1];
+
+    printf("\n\nuri: %s", http_request.URI);
+    printf("\nparams: %s\n", http_request.params);
+
+
 }
