@@ -13,4 +13,4 @@ In backend_framework.c -> get("route" , controller) , post("/",ctrl) you can def
 
 In controllers you can send pictures(binary), html files(text), add response headers, and get the request body, like the modern frameworks.
 (request and response are global and have the buffer than tecnically you can always all)
-But like this is like modern frameworks. in 30kb
+But like this is like modern frameworks. in few Kilobytes
